@@ -2,11 +2,11 @@
 
 // create an array with nodes
 var nodes = new vis.DataSet([
-  { id: 1, label: "Node 1" },
-  { id: 2, label: "Node 2" },
-  { id: 3, label: "Node 3" },
-  { id: 4, label: "Node 4" },
-  { id: 5, label: "Node 5" },
+  { id: 1, label: "1" },
+  { id: 2, label: "2" },
+  { id: 3, label: "3" },
+  { id: 4, label: "4" },
+  { id: 5, label: "5" },
 ]);
 
 // only the options that have shorthand notations are shown
@@ -32,18 +32,13 @@ var options = {
 var network = new vis.Network(container, data, options);
 
 
-
+var new_nodeNum = 6
 network.on('click',function(params){
-    if((params.nodes.length == 0) && (params.edges.length == 0)) {
-        var updatedIds = nodes.add([{
-            label:'new',
-            x:params.pointer.canvas.x,
-            y:params.pointer.canvas.y
-        }]);
-        network.selectNodes([updatedIds[0]]);
-        network.editNode();
-    }
+  nodes.add({id: new_nodeNum, label: new_nodeNum})
+  console.log(nodes)
+  new_nodeNum += 1
 })
+
 
 function step(state, input, graph) {
     return graph[state][input]
